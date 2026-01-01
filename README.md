@@ -1,3 +1,5 @@
+![Wallpaper Update](https://github.com/t0k3n0/year/actions/workflows/update_wallpaper.yml/badge.svg)
+
 # Life & Year Progress Wallpapers
 
 A "set and forget" automation that generates a dynamic wallpaper for your iPhone every morning. It runs on GitHub Actions (for free) and updates your lock screen via iOS Shortcuts.

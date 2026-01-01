@@ -102,4 +102,3 @@ If you want complex logic (e.g., randomizing between Life/Year views), use this 
   2. Add Action: **HTTP Request** (GET) -> Paste your URL -> Save to file `wallpaper.png`.
   3. Add Action: **Set Wallpaper** -> Select that file.
 
-### Option

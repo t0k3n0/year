@@ -4,11 +4,11 @@ import calendar
 
 # --- CONFIGURATION ---
 SCREEN_SIZE = (1170, 2532)
-BG_COLOR = (20, 20, 20)        # Dark Charcoal (Matches your reference)
-FILLED_COLOR = (80, 80, 80)    # Light Gray (Past days)
-EMPTY_COLOR = (40, 40, 40)     # Dark Gray (Future days)
-ACTIVE_COLOR = (255, 100, 50)  # Orange (Current day)
-TEXT_COLOR = (200, 200, 200)   # Light Gray for labels
+BG_COLOR = (20, 20, 20)        # Dark Charcoal
+FILLED_COLOR = (80, 80, 80)    # Light Gray
+EMPTY_COLOR = (40, 40, 40)     # Dark Gray
+ACTIVE_COLOR = (255, 100, 50)  # Orange
+TEXT_COLOR = (200, 200, 200)   # Light Gray labels
 
 def create_year_wallpaper():
     today = date.today()
@@ -17,21 +17,24 @@ def create_year_wallpaper():
     total_days = 366 if is_leap else 365
     day_of_year = today.timetuple().tm_yday
     
-    # Calculate stats
+    # Stats
     days_left = total_days - day_of_year
     percent_done = int((day_of_year / total_days) * 100)
 
     img = Image.new('RGB', SCREEN_SIZE, color=BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    # --- GRID SETTINGS ---
+    # --- GRID SETTINGS (RESIZED TO FIT) ---
     cols = 7
     rows = 53
-    gap = 25                   
-    dot_radius = 20            
-    dot_size = dot_radius * 2
     
-    # Calculate grid dimensions to center it
+    # NEW SMALLER SIZES
+    # Previous settings were too big for the height of the screen
+    dot_radius = 14            
+    dot_size = dot_radius * 2  # 28px
+    gap = 15                   # 15px gap
+    
+    # Calculate grid dimensions
     grid_width = (cols * dot_size) + ((cols - 1) * gap)
     grid_height = (rows * dot_size) + ((rows - 1) * gap)
     
@@ -41,7 +44,6 @@ def create_year_wallpaper():
 
     # --- FONTS ---
     try:
-        # Standard fonts on GitHub servers
         font_main = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 40)
         font_label = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 28)
     except IOError:
@@ -51,12 +53,11 @@ def create_year_wallpaper():
     # --- LABELS ---
     
     # 1. Top Label: "DAYS"
-    # Centered above the grid
-    draw.text((SCREEN_SIZE[0]//2, start_y - 70), "DAYS", fill=TEXT_COLOR, font=font_label, anchor="ms")
+    # Drawn 80px above the grid
+    draw.text((SCREEN_SIZE[0]//2, start_y - 80), "DAYS", fill=TEXT_COLOR, font=font_label, anchor="ms")
     
     # 2. Side Label: "WEEKS"
-    # Positioned to the left of the grid, vertically centered
-    # We subtract 80px from start_x to move it left
+    # Drawn 60px to the left of the grid
     draw.text((start_x - 60, start_y + grid_height//2), "WEEKS", fill=TEXT_COLOR, font=font_label, anchor="rm")
 
     # --- DRAW GRID ---
@@ -75,6 +76,7 @@ def create_year_wallpaper():
             if current_day_index < day_of_year:
                 draw.ellipse(box, fill=FILLED_COLOR)
             elif current_day_index == day_of_year:
+                # Active Day (Orange)
                 draw.ellipse(box, fill=ACTIVE_COLOR)
             else:
                 draw.ellipse(box, fill=EMPTY_COLOR)
@@ -82,9 +84,9 @@ def create_year_wallpaper():
             current_day_index += 1
 
     # --- FOOTER STATS ---
-    # Matches reference: "364d left • 0%"
+    # Drawn 100px below the grid
     stats_text = f"{days_left}d left  •  {percent_done}%"
-    draw.text((SCREEN_SIZE[0]//2, start_y + grid_height + 80), stats_text, fill=ACTIVE_COLOR, font=font_main, anchor="mm")
+    draw.text((SCREEN_SIZE[0]//2, start_y + grid_height + 100), stats_text, fill=ACTIVE_COLOR, font=font_main, anchor="mm")
 
     img.save("year_progress.png")
     print("Year progress wallpaper generated.")

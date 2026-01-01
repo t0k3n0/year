@@ -3,7 +3,7 @@ from datetime import date
 import calendar
 
 # --- CONFIGURATION ---
-SCREEN_SIZE = (1170, 2532)
+SCREEN_SIZE = (1000, 1000)
 BG_COLOR = (20, 20, 20)        # Dark Charcoal
 FILLED_COLOR = (80, 80, 80)    # Light Gray
 EMPTY_COLOR = (40, 40, 40)     # Dark Gray

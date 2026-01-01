@@ -3,7 +3,7 @@ from datetime import date
 import calendar
 
 # --- CONFIGURATION ---
-SCREEN_SIZE = (1000, 1000)
+SCREEN_SIZE = (1206, 2622)     # Resolution of iPhone
 BG_COLOR = (20, 20, 20)        # Dark Charcoal
 FILLED_COLOR = (80, 80, 80)    # Light Gray
 EMPTY_COLOR = (40, 40, 40)     # Dark Gray
@@ -30,9 +30,9 @@ def create_year_wallpaper():
     
     # NEW SMALLER SIZES
     # Previous settings were too big for the height of the screen
-    dot_radius = 14            
-    dot_size = dot_radius * 2  # 28px
-    gap = 15                   # 15px gap
+    dot_radius = 10            
+    dot_size = dot_radius * 2  # 20px
+    gap = 12                   # 13px gap
     
     # Calculate grid dimensions
     grid_width = (cols * dot_size) + ((cols - 1) * gap)

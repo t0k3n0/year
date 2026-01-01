@@ -25,8 +25,8 @@ def create_year_wallpaper():
     draw = ImageDraw.Draw(img)
 
     # --- GRID SETTINGS (RESIZED TO FIT) ---
-    cols = 7
-    rows = 53
+    cols = 14
+    rows = 27
     
     # NEW SMALLER SIZES
     # Previous settings were too big for the height of the screen

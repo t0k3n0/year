@@ -1,9 +1,9 @@
-name: Update Life in Weeks Wallpaper
+name: Update Wallpapers
 
 on:
   schedule:
     - cron: '0 0 * * *' # Runs at Midnight UTC
-  workflow_dispatch:      # Allows manual testing
+  workflow_dispatch:      # Manual run button
 
 permissions:
   contents: write
@@ -23,14 +23,17 @@ jobs:
     - name: Install dependencies
       run: pip install Pillow
 
-    - name: Generate Wallpaper
+    - name: Generate Life Wallpaper
       env:
         USER_BIRTHDAY: ${{ secrets.USER_BIRTHDAY }}
       run: python generate_wallpaper.py
+
+    - name: Generate Year Wallpaper
+      run: python generate_year_wallpaper.py
 
     - name: Commit and Push
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
-        git add wallpaper.png
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update wallpaper" && git push)
+        git add wallpaper.png year_progress.png
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update wallpapers" && git push)

@@ -66,4 +66,38 @@ You need to create a simple Shortcut on your iPhone to fetch the image.
 4.  Add **Set Wallpaper** (Turn off "Show Preview").
 5.  Set an Automation to run this daily at 4:00 AM.
 
+
+---
+
+## 🤖 Android Setup
+
+Since Android doesn't have a built-in "Shortcuts" app, you will need a small app to fetch the wallpaper. Here are the three best options (all free).
+
+### Option 1: Remote Wallpaper (Best Open Source)
+A tiny, no-nonsense app that does exactly one thing: downloads an image from a URL and sets it as your wallpaper.
+* **Download:** [Get the APK here](https://github.com/cssnr/remote-wallpaper-android/releases)
+* **Setup:**
+  1. Open the app.
+  2. **Remote URL:** Paste your Raw GitHub Link (ending in `.png`).
+  3. **Interval:** Set to `24 Hours`.
+  4. Tap **Start**.
+
+### Option 2: Muzei (Best for Aesthetics)
+A polished "Live Wallpaper" app that creates a nice blur/dim effect behind your icons.
+* **Download:** [Play Store](https://play.google.com/store/apps/details?id=net.nurik.roman.muzei) or [F-Droid](https://f-droid.org/en/packages/net.nurik.roman.muzei/)
+* **Setup:**
+  1. Install **Muzei** + the **"With Others"** plugin (or any URL plugin).
+  2. Open Muzei and set it as your wallpaper.
+  3. Tap **Sources** -> **With Others**.
+  4. Paste your Raw GitHub Link.
+  5. Set Update Interval to `24h`.
+
+### Option 3: MacroDroid (For Power Users)
+If you want complex logic (e.g., randomizing between Life/Year views), use this automation tool.
+* **Download:** [Play Store](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid)
+* **Setup:**
+  1. Create a macro with a **Daily Timer** trigger (e.g., 4:00 AM).
+  2. Add Action: **HTTP Request** (GET) -> Paste your URL -> Save to file `wallpaper.png`.
+  3. Add Action: **Set Wallpaper** -> Select that file.
+
 ### Option
